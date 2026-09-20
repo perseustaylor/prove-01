@@ -11,10 +11,11 @@ public class Lists
     public static double[] MultiplesOf(double number, int length)
     {
         double[] result = new double[length];
-        for (int i = 0; i < length; i++)    
+        for (int i = 0; i < length; i++)
         {
             result[i] = number * (i + 1);
         }
+
         return result; // replace this return statement with your own
     }
 
@@ -26,25 +27,20 @@ public class Lists
     /// <br /><br />
     /// Because a list is dynamic, this function will modify the existing <c>data</c> list rather than returning a new list.
     /// </summary>
-    
-    
-    // i changed the method from void to List<int> so i can return the final list
-    public static List<int> RotateListRight(List<int> data, int amount)
+
+
+    public static void RotateListRight(List<int> data, int amount)
     {
-        // this is used to find how many items will stay and then be at the end of the new list later
+        // this calculates the split point
         int splitList = data.Count - amount;
 
-        // this gets the numbers that are moving to the front
+        // this divides the list and puts them in two separate lists for the rotating logic
         List<int> rightList = data.GetRange(splitList, amount);
-
-        // this gets the numbers that are moving to the back
         List<int> leftList = data.GetRange(0, splitList);
 
-        // this part combines the two lists into a new list
-        List<int> result = new List<int>();
-        result.AddRange(rightList);
-        result.AddRange(leftList);
-    
-    return result;
+        // this clears the list and appends the divided list in a way that makes it work
+        data.Clear();
+        data.AddRange(rightList);
+        data.AddRange(leftList);
     }
 }
